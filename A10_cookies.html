@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #cookie-value {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cookie Example</h1>
+    <button onclick="setCookie()">Set Cookie</button>
+    <p id="cookie-value">Cookie value will be displayed here.</p>
+
+    <script>
+        function setCookie() {
+            var cookieName = "example_cookie";
+            var cookieValue = "Hello, this is a cookie!";
+            document.cookie = cookieName + "=" + cookieValue + "; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/";
+            displayCookie();
+        }
+
+        function displayCookie() {
+            var cookies = document.cookie.split(';');
+            var cookieValue = "";
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = cookies[i].trim();
+                if (cookie.startsWith("example_cookie=")) {
+                    cookieValue = cookie.substring("example_cookie=".length, cookie.length);
+                    break;
+                }
+            }
+            document.getElementById("cookie-value").innerText = "Cookie Value: " + cookieValue;
+        }
+
+        // Call displayCookie function when the page loads
+        window.onload = displayCookie;
+    </script>
+    <footer>
+		<p>&copy; 2024, Christian Lee</p>
+	</footer>
+</body>
+</html>
